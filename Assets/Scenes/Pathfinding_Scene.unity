@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc88123fb84794deca0f0c7574a064c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyDisplayPathGizmos: 1
+  displayGridGizmos: 0
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 256
@@ -984,8 +984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9319dddf546994c85b5922b5239f8ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 916384839}
-  target: {fileID: 998225016}
 --- !u!114 &496457999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,6 +1658,7 @@ GameObject:
   - component: {fileID: 916384838}
   - component: {fileID: 916384837}
   - component: {fileID: 916384836}
+  - component: {fileID: 916384840}
   m_Layer: 0
   m_Name: Seeker
   m_TagString: Untagged
@@ -1742,6 +1741,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &916384840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916384835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22aadbfaa290b44059d1470e4a6e51a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 998225016}
+  speed: 1
 --- !u!1 &922880216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,7 +2036,6 @@ GameObject:
   - component: {fileID: 998225015}
   - component: {fileID: 998225014}
   - component: {fileID: 998225013}
-  - component: {fileID: 998225017}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -2106,20 +2118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &998225017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998225012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a158c037def81479a8c8e0fa9aa38dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  target: {fileID: 998225012}
 --- !u!1 &1045505131
 GameObject:
   m_ObjectHideFlags: 0
