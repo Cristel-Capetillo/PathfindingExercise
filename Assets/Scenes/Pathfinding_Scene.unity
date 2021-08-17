@@ -932,6 +932,7 @@ GameObject:
   - component: {fileID: 496457997}
   - component: {fileID: 496457996}
   - component: {fileID: 496457998}
+  - component: {fileID: 496457999}
   m_Layer: 0
   m_Name: AStarObject
   m_TagString: Untagged
@@ -985,6 +986,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seeker: {fileID: 916384839}
   target: {fileID: 998225016}
+--- !u!114 &496457999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496457995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b0ee27a9d824865a50c7d22934645d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &501811612
 GameObject:
   m_ObjectHideFlags: 0
