@@ -288,6 +288,15 @@ MonoBehaviour:
     m_Bits: 256
   gridWorldSize: {x: 100, y: 100}
   cellRadius: 0.5
+  walkableAreas:
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 512
+    terrainPenalty: 0
+  - terrainMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    terrainPenalty: 5
 --- !u!4 &496457997
 Transform:
   m_ObjectHideFlags: 0
@@ -789,6 +798,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 383789ecc69c44192ac058d1f25713df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 383789ecc69c44192ac058d1f25713df, type: 3}
 --- !u!1 &790398382 stripped
@@ -1109,10 +1123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d153b042fbb2d4941844973d0fe0863e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromUnit: 40
-  desiredAngle: 40
-  desiredHeight: 25
-  desiredSmoothness: 0.5
+  distanceFromUnit: 50
+  desiredAngle: 45
+  desiredHeight: 30
+  desiredSmoothness: 0.8
 --- !u!1 &998225012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,8 +1233,8 @@ GameObject:
   - component: {fileID: 1265058609}
   - component: {fileID: 1265058608}
   - component: {fileID: 1265058607}
-  m_Layer: 0
-  m_Name: Ground
+  m_Layer: 10
+  m_Name: GrassPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

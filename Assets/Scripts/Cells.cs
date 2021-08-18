@@ -10,17 +10,19 @@ public class Cells : IHeapItem<Cells>
 
     public int gridX;
     public int gridY;
+    public int movementPenalty;
 
     public Cells parent;
 
     int heapIndex;
 
-    public Cells(bool _walkable, Vector3 _worldPosition, int _gridX, int _gridY)
+    public Cells(bool _walkable, Vector3 _worldPosition, int _gridX, int _gridY, int _movPenalty)
     {
         isWalkable = _walkable;
         worldPosition = _worldPosition;
         gridX = _gridX;
         gridY = _gridY;
+        movementPenalty = _movPenalty;
     }
 
     public int fCost

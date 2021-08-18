@@ -58,7 +58,8 @@ public class PathfindingAlgorithm : MonoBehaviour
                   continue;
                }
 
-               int newMovementCostToNeighbor = currentCells.gCost + CalculateDistance(currentCells, neighbor);
+               int newMovementCostToNeighbor = 
+                  currentCells.gCost + CalculateDistance(currentCells, neighbor) + neighbor.movementPenalty;
                if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
                {
                   neighbor.gCost = newMovementCostToNeighbor;
