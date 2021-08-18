@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -12,7 +10,7 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        RequestPathfinding.RequestPath(transform.position, target.position, OnPathFound);
+        RequestPathfinding.RequestingPath(transform.position, target.position, OnPathFound);
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)

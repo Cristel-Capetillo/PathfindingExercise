@@ -6,17 +6,17 @@ public class GridGenerator : MonoBehaviour
     public bool displayGridGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
-    public float nodeRadius;
+    public float cellRadius;
     Cells[,] grid;
 
-    float nodeDiameter;
+    float cellDiameter;
     int gridSizeX, gridSizeY;
 
     void Awake()
     {
-        nodeDiameter = nodeRadius * 2;
-        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
-        gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
+        cellDiameter = cellRadius * 2;
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / cellDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y / cellDiameter);
         CreateGrid();
     }
 
@@ -39,14 +39,14 @@ public class GridGenerator : MonoBehaviour
             for (int y = 0; y < gridSizeY; y++)
             {
                 Vector3 worldPoint = 
-                    worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
-                bool isWalkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+                    worldBottomLeft + Vector3.right * (x * cellDiameter + cellRadius) + Vector3.forward * (y * cellDiameter + cellRadius);
+                bool isWalkable = !(Physics.CheckSphere(worldPoint, cellRadius, unwalkableMask));
                 grid[x, y] = new Cells(isWalkable, worldPoint, x, y);
             }
         }
     }
 
-    public Cells NodeFromWorldPoint(Vector3 worldPosition)
+    public Cells CellFromWorldPoint(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
@@ -92,7 +92,7 @@ public class GridGenerator : MonoBehaviour
             foreach (Cells n in grid) 
             {
                 Gizmos.color = (n.isWalkable)?Color.white:Color.red;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (cellDiameter-.1f));
             }
         }
     }

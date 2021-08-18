@@ -29,8 +29,8 @@ public class PathfindingAlgorithm : MonoBehaviour
       Vector3[] waypoints = new Vector3[0];
       bool pathSuccess = false;
 
-      Cells startCells = grid.NodeFromWorldPoint(startPosition);
-      Cells targetCells = grid.NodeFromWorldPoint(targetPosition);
+      Cells startCells = grid.CellFromWorldPoint(startPosition);
+      Cells targetCells = grid.CellFromWorldPoint(targetPosition);
 
       if (startCells.isWalkable && targetCells.isWalkable)
       {
@@ -104,16 +104,16 @@ public class PathfindingAlgorithm : MonoBehaviour
    Vector3[] SimplifyPath(List<Cells> path)
    {
       List<Vector3> waypoints = new List<Vector3>();
-      Vector2 directionOld = Vector2.zero;
+      Vector2 oldDirection = Vector2.zero;
 
       for (int i = 1; i < path.Count; i++)
       {
-         Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
-         if (directionNew != directionOld)
+         Vector2 newDirection = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
+         if (newDirection != oldDirection)
          {
             waypoints.Add(path[i].worldPosition);
          }
-         directionOld = directionNew;
+         oldDirection = newDirection;
       }
       
       return waypoints.ToArray();
