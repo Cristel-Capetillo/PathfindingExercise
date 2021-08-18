@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 74336325}
   m_Layer: 0
   m_Name: Unit (3)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 425849106}
   m_Layer: 0
   m_Name: Unit (2)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 861410120}
   m_Layer: 0
   m_Name: Unit (1)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1167,7 +1167,7 @@ GameObject:
   - component: {fileID: 905122227}
   m_Layer: 0
   m_Name: Unit (4)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1515,7 +1515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1869,6 +1869,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: desiredAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: desiredHeight
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: distanceFromUnit
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: desiredSmoothness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1437568638643130057, guid: 6665a043dc5d84f8da7f73c9034935e9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1932,7 +1952,7 @@ PrefabInstance:
     - target: {fileID: 1437568638643130060, guid: 6665a043dc5d84f8da7f73c9034935e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6665a043dc5d84f8da7f73c9034935e9, type: 3}
