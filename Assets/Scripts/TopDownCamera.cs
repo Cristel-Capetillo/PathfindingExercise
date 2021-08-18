@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TopDownCamera : MonoBehaviour
 {
     Transform unit;
-    public float distanceFromUnit = 5f;
-    public float angle = 43f;
-    public float height = 9.5f;
-    public float smoothLevel = 0.6f;
+    [SerializeField] float distanceFromUnit = 40f;
+    [SerializeField] float desiredAngle = 45f;
+    [SerializeField] float desiredHeight = 25f;
+    [SerializeField] float desiredSmoothness = 0.5f;
     Vector3 referenceToVelocity;
 
     void Start()
@@ -30,13 +27,13 @@ public class TopDownCamera : MonoBehaviour
             return; 
         }
         
-        Vector3 worldPosition = (Vector3.forward * -distanceFromUnit) +(Vector3.up * height);
-        Vector3 angleToViewFrom = Quaternion.AngleAxis(angle, Vector3.up) * worldPosition;
+        Vector3 worldPosition = (Vector3.forward * -distanceFromUnit) +(Vector3.up * desiredHeight);
+        Vector3 angleToViewFrom = Quaternion.AngleAxis(desiredAngle, Vector3.up) * worldPosition;
         Vector3 flatPosition = unit.position;
         flatPosition.y = 0;
         Vector3 finalPosition = flatPosition + angleToViewFrom;
         transform.position =
-            Vector3.SmoothDamp(transform.position, finalPosition, ref referenceToVelocity, smoothLevel);
+            Vector3.SmoothDamp(transform.position, finalPosition, ref referenceToVelocity, desiredSmoothness);
         transform.LookAt(flatPosition);
     }
 }
