@@ -9,23 +9,13 @@ public class Pathfinding : MonoBehaviour
 {
    RequestPathfinding requestPathfinding;
    GridGenerator grid;
-   
-   //public Transform seeker, target;
 
    void Awake()
    {
       requestPathfinding = GetComponent<RequestPathfinding>();
       grid = GetComponent<GridGenerator>();
    }
-
-   /*private void Update()
-   {
-      if (Input.GetButtonDown("Jump"))
-      {
-         FindPath(seeker.position, target.position);
-      }
-   }*/
-
+   
    public void StartFindPath(Vector3 startPosition, Vector3 targetPosition)
    {
       StartCoroutine(FindPath(startPosition, targetPosition));
@@ -107,7 +97,6 @@ public class Pathfinding : MonoBehaviour
       Array.Reverse(waypoints);
 
       return waypoints;
-      //grid.path = path;
    }
 
    Vector3[] SimplifyPath(List<Node> path)
