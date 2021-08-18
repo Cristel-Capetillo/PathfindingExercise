@@ -10,14 +10,14 @@ public class RequestPathfinding : MonoBehaviour
 
     static RequestPathfinding instance;
 
-    Pathfinding pathfinding;
+    PathfindingAlgorithm _pathfindingAlgorithm;
 
     bool isProcessingPath;
 
     private void Awake()
     {
         instance = this;
-        pathfinding = GetComponent<Pathfinding>();
+        _pathfindingAlgorithm = GetComponent<PathfindingAlgorithm>();
     }
 
     public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback)
@@ -33,7 +33,7 @@ public class RequestPathfinding : MonoBehaviour
         {
             currentPathRequest = pathRequestQueue.Dequeue();
             isProcessingPath = true;
-            pathfinding.StartFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd);
+            _pathfindingAlgorithm.StartFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd);
         }
     }
 

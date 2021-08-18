@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
-public class Pathfinding : MonoBehaviour
+public class PathfindingAlgorithm : MonoBehaviour
 {
    RequestPathfinding requestPathfinding;
    GridGenerator grid;
@@ -29,21 +29,21 @@ public class Pathfinding : MonoBehaviour
       Vector3[] waypoints = new Vector3[0];
       bool pathSuccess = false;
 
-      Node startNode = grid.NodeFromWorldPoint(startPosition);
-      Node targetNode = grid.NodeFromWorldPoint(targetPosition);
+      Cells startCells = grid.NodeFromWorldPoint(startPosition);
+      Cells targetCells = grid.NodeFromWorldPoint(targetPosition);
 
-      if (startNode.isWalkable && targetNode.isWalkable)
+      if (startCells.isWalkable && targetCells.isWalkable)
       {
-         Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-         HashSet<Node> closedSet = new HashSet<Node>();
-         openSet.Add(startNode);
+         Heap<Cells> openSet = new Heap<Cells>(grid.MaxSize);
+         HashSet<Cells> closedSet = new HashSet<Cells>();
+         openSet.Add(startCells);
 
          while (openSet.Count > 0)
          {
-            Node currentNode = openSet.RemoveFirst();
-            closedSet.Add(currentNode);
+            Cells currentCells = openSet.RemoveFirst();
+            closedSet.Add(currentCells);
 
-            if (currentNode == targetNode)
+            if (currentCells == targetCells)
             {
                sw.Stop();
                Debug.Log("PATH FOUND WITHIN: " + sw.ElapsedMilliseconds + " MILLISECONDS");
@@ -51,19 +51,19 @@ public class Pathfinding : MonoBehaviour
                break;
             }
 
-            foreach (Node neighbor in grid.GetNeighbors(currentNode))
+            foreach (Cells neighbor in grid.GetNeighbors(currentCells))
             {
                if (!neighbor.isWalkable || closedSet.Contains(neighbor))
                {
                   continue;
                }
 
-               int newMovementCostToNeighbor = currentNode.gCost + CalculateDistance(currentNode, neighbor);
+               int newMovementCostToNeighbor = currentCells.gCost + CalculateDistance(currentCells, neighbor);
                if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
                {
                   neighbor.gCost = newMovementCostToNeighbor;
-                  neighbor.hCost = CalculateDistance(neighbor, targetNode);
-                  neighbor.parent = currentNode;
+                  neighbor.hCost = CalculateDistance(neighbor, targetCells);
+                  neighbor.parent = currentCells;
                
                   if(!openSet.Contains(neighbor))
                      openSet.Add(neighbor);
@@ -78,21 +78,21 @@ public class Pathfinding : MonoBehaviour
 
       if (pathSuccess)
       {
-         waypoints = RetracePath(startNode, targetNode);
+         waypoints = RetracePath(startCells, targetCells);
       }
       
       requestPathfinding.FinishProcessingPath(waypoints, pathSuccess);
    }
 
-   Vector3[] RetracePath(Node startNode, Node endNode)
+   Vector3[] RetracePath(Cells startCells, Cells endCells)
    {
-      List<Node> path = new List<Node>();
-      Node currentNode = endNode;
+      List<Cells> path = new List<Cells>();
+      Cells currentCells = endCells;
 
-      while (currentNode != startNode)
+      while (currentCells != startCells)
       {
-         path.Add(currentNode);
-         currentNode = currentNode.parent;
+         path.Add(currentCells);
+         currentCells = currentCells.parent;
       }
 
       Vector3[] waypoints = SimplifyPath(path);
@@ -101,7 +101,7 @@ public class Pathfinding : MonoBehaviour
       return waypoints;
    }
 
-   Vector3[] SimplifyPath(List<Node> path)
+   Vector3[] SimplifyPath(List<Cells> path)
    {
       List<Vector3> waypoints = new List<Vector3>();
       Vector2 directionOld = Vector2.zero;
@@ -119,10 +119,10 @@ public class Pathfinding : MonoBehaviour
       return waypoints.ToArray();
    }
 
-   int CalculateDistance(Node nodeA, Node nodeB)
+   int CalculateDistance(Cells cellsA, Cells cellsB)
    {
-      int distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-      int distanceY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+      int distanceX = Mathf.Abs(cellsA.gridX - cellsB.gridX);
+      int distanceY = Mathf.Abs(cellsA.gridY - cellsB.gridY);
 
       if (distanceX > distanceY) 
          return 14 * distanceY + 10 * (distanceX - distanceY);

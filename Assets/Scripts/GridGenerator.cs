@@ -7,7 +7,7 @@ public class GridGenerator : MonoBehaviour
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
-    Node[,] grid;
+    Cells[,] grid;
 
     float nodeDiameter;
     int gridSizeX, gridSizeY;
@@ -30,7 +30,7 @@ public class GridGenerator : MonoBehaviour
 
     void CreateGrid()
     {
-        grid = new Node[gridSizeX, gridSizeY];
+        grid = new Cells[gridSizeX, gridSizeY];
         Vector3 worldBottomLeft =
             transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
@@ -41,12 +41,12 @@ public class GridGenerator : MonoBehaviour
                 Vector3 worldPoint = 
                     worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool isWalkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
-                grid[x, y] = new Node(isWalkable, worldPoint, x, y);
+                grid[x, y] = new Cells(isWalkable, worldPoint, x, y);
             }
         }
     }
 
-    public Node NodeFromWorldPoint(Vector3 worldPosition)
+    public Cells NodeFromWorldPoint(Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
@@ -60,9 +60,9 @@ public class GridGenerator : MonoBehaviour
         return grid[x, y];
     }
 
-    public List<Node> GetNeighbors(Node node)
+    public List<Cells> GetNeighbors(Cells cells)
     {
-        List<Node> neighbors = new List<Node>();
+        List<Cells> neighbors = new List<Cells>();
 
         for (int x = -1; x <= 1; x++)
         {
@@ -70,8 +70,8 @@ public class GridGenerator : MonoBehaviour
             {
                 if(x == 0 && y == 0) continue;
 
-                int checkX = node.gridX + x;
-                int checkY = node.gridY + y;
+                int checkX = cells.gridX + x;
+                int checkY = cells.gridY + y;
 
                 if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
                 {
@@ -89,7 +89,7 @@ public class GridGenerator : MonoBehaviour
         
         if (grid != null && displayGridGizmos)
         {
-            foreach (Node n in grid) 
+            foreach (Cells n in grid) 
             {
                 Gizmos.color = (n.isWalkable)?Color.white:Color.red;
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
