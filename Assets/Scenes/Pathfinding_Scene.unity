@@ -2420,6 +2420,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: desiredHeight
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: distanceFromUnit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437568638643130056, guid: 6665a043dc5d84f8da7f73c9034935e9,
+        type: 3}
+      propertyPath: desiredSmoothness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1437568638643130057, guid: 6665a043dc5d84f8da7f73c9034935e9,
         type: 3}
       propertyPath: m_RootOrder
